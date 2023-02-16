@@ -1,0 +1,11 @@
+[Unit]
+Requires=kuksa-val.service
+After=kuksa-val.service
+
+[Service]
+Type=simple
+ExecStart=/usr/sbin/agl-service-agl
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
