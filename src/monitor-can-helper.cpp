@@ -15,8 +15,8 @@
 namespace property_tree = boost::property_tree;
 
 MonitorCanHelper::MonitorCanHelper() :
-	m_speed(0)
-	m_rpm(1000)
+	m_speed(0),
+	m_rpm(1000),
 	m_port("can0"),
 	m_config_valid(false),
 	m_active(false),
