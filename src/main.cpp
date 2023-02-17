@@ -22,7 +22,7 @@ int main(int argc, char** argv)
 
 	// Launch the asynchronous operation
 	VisConfig config("agl-service-monitor");
-	std::make_shared<HvacService>(config, ioc, ctx)->run();
+	std::make_shared<MonitorService>(config, ioc, ctx)->run();
 
 	// Ensure I/O context continues running even if there's no work
 	work_guard_type work_guard(ioc.get_executor());
