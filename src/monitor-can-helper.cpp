@@ -130,16 +130,7 @@ void MonitorCanHelper::set_speed(uint8_t speed)
 
 void MonitorCanHelper::set_rpm(uint8_t rpm)
 {
-	//Scale incomming 0-10.000 VSS Signal to match data size  
-	m_rpm = rpm / 100;
-	can_update();
-}
-
-void MonitorCanHelper::set_fan_speed(uint8_t speed)
-{
-	// Scale incoming 0-100 VSS signal to 0-255 to match hardware expectations
-	double value = speed * 255.0 / 100.0;
-	m_fan_speed = (uint8_t) (value + 0.5);
+	m_rpm = rpm;
 	can_update();
 }
 
@@ -153,7 +144,7 @@ void MonitorCanHelper::can_update()
 	frame.can_dlc = 8;
 	frame.data[0] = 0;
 	frame.data[1] = convert_rpm(m_rpm);
-	frame.data[2] = 0
+	frame.data[2] = 0;
 	frame.data[4] = convert_speed(m_speed);
 	frame.data[5] = 0;
 	frame.data[6] = 0;
