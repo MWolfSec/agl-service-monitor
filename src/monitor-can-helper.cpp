@@ -164,3 +164,24 @@ void MonitorCanHelper::can_update()
 }
 
 
+uint8_t MonitorCanHelper::convert_speed(uint8_t value) {
+	int result = ((0xF0 - 0x10) / 15) * (value - 15) + 0x10;
+	if (result < 0x10)
+		result = 0x10;
+	if (result > 0xF0)
+		result = 0xF0;
+
+	return (uint8_t) result;
+}
+
+uint8_t  MonitorCanHelper::convert_rpm(uint8_t value) {
+	int result = ((0xF0 - 0x10) / 15) * (value - 15) + 0x10;
+	if (result < 0x10)
+		result = 0x10;
+	if (result > 0xF0)
+		result = 0xF0;
+
+	return (uint8_t) result;
+}
+
+
