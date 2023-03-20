@@ -145,6 +145,7 @@ void MonitorCanHelper::can_update()
 	frame.data[0] = 0;
 	frame.data[1] = convert_rpm(m_rpm);
 	frame.data[2] = 0;
+	frame.data[3] = 0;
 	frame.data[4] = convert_speed(m_speed);
 	frame.data[5] = 0;
 	frame.data[6] = 0;
