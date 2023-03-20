@@ -15,8 +15,8 @@
 namespace property_tree = boost::property_tree;
 
 MonitorCanHelper::MonitorCanHelper() :
-	m_speed(0),
-	m_rpm(1000),
+	m_level(30),
+	m_pressure(800.0),
 	m_port("can0"),
 	m_config_valid(false),
 	m_active(false),
@@ -122,15 +122,15 @@ void MonitorCanHelper::can_close()
 		close(m_can_socket);
 }
 
-void MonitorCanHelper::set_speed(uint8_t speed)
+void MonitorCanHelper::set_level(uint8_t level)
 {
-	m_speed = speed;
+	m_level = level;
 	can_update();
 }
 
-void MonitorCanHelper::set_rpm(uint8_t rpm)
+void MonitorCanHelper::set_pressure(uint8_t pressure)
 {
-	m_rpm = rpm;
+	m_pressure = pressure;
 	can_update();
 }
 
@@ -143,10 +143,10 @@ void MonitorCanHelper::can_update()
 	frame.can_id = 0x201;
 	frame.can_dlc = 8;
 	frame.data[0] = 0;
-	frame.data[1] = convert_rpm(m_rpm);
+	frame.data[1] = conver_level(m_level);
 	frame.data[2] = 0;
 	frame.data[3] = 0;
-	frame.data[4] = convert_speed(m_speed);
+	frame.data[4] = convert_pressure(m_pressure);
 	frame.data[5] = 0;
 	frame.data[6] = 0;
 	frame.data[7] = 0;
@@ -165,7 +165,7 @@ void MonitorCanHelper::can_update()
 }
 
 
-uint8_t MonitorCanHelper::convert_speed(uint8_t value) {
+uint8_t MonitorCanHelper::convert_level(uint8_t value) {
 	int result = ((0xF0 - 0x10) / 15) * (value - 15) + 0x10;
 	if (result < 0x10)
 		result = 0x10;
@@ -175,8 +175,8 @@ uint8_t MonitorCanHelper::convert_speed(uint8_t value) {
 	return (uint8_t) result;
 }
 
-uint8_t  MonitorCanHelper::convert_rpm(uint8_t value) {
-	int result = ((0xF0 - 0x10) / 15) * (value - 15) + 0x10;
+uint8_t  MonitorCanHelper::convert_pressure(uint8_t value) {
+	int result = ((0xF0 - 0x10) / 15) * (((int)value/100) - 15) + 0x10;
 	if (result < 0x10)
 		result = 0x10;
 	if (result > 0xF0)

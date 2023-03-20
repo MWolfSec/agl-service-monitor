@@ -24,20 +24,20 @@ void MonitorService::handle_get_response(std::string &path, std::string &value, 
 
 void MonitorService::handle_notification(std::string &path, std::string &value, std::string &timestamp)
 {
-	if (path == "Vehicle.Speed") {
+	if (path == "Vehicle.TurboCharger.BoostLevel") {
 		try {
-			int speed = std::stoi(value);
-			if (speed >= 0 && speed < 180)
-				set_speed(speed);
+			int level = std::stoi(value);
+			if (level >= 0 && level < 100)
+				set_level(level);
 		}
 		catch (std::exception ex) {
 			// ignore bad value
 		}
-	} else if (path == "Vehicle.Powertrain.CombustionEngine.Speed") {
+	} else if (path == "Vehicle.TurboCharger.BoostPressure") {
 		try {
-			int rpm = std::stoi(value);
-			if (rpm >= 0 && rpm < 5000)
-				set_rpm(rpm);
+			double pressure = std::stoi(value);
+			if (pressure >= 0 && pressure < 5000.0)
+				set_pressure(pressure);
 		}
 		catch (std::exception ex) {
 			// ignore bad value
@@ -46,13 +46,13 @@ void MonitorService::handle_notification(std::string &path, std::string &value, 
 	// else ignore
 }
 
-void MonitorService::set_speed(uint8_t speed)
+void MonitorService::set_level(uint8_t level)
 {
-	m_can_helper.set_speed(speed);
+	m_can_helper.set_level(level);
 }
 
-void MonitorService::set_rpm(uint8_t rpm)
+void MonitorService::set_pressure(uint8_t pressure)
 {
-	m_can_helper.set_rpm(rpm);
+	m_can_helper.set_pressure(pressure);
 }
 
