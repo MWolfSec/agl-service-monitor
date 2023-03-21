@@ -13,15 +13,15 @@ public:
 
 	~MonitorCanHelper();
 
-	void set_speed(uint8_t speed);
+	void set_level(uint8_t level);
 
-	void set_rpm(uint8_t rpm);
+	void set_pressure(uint8_t pressure);
 
 private:
 
-	uint8_t convert_speed(uint8_t value);
+	uint8_t convert_level(uint8_t value);
 	
-	uint8_t  convert_rpm(uint8_t value);
+	uint8_t  convert_presssure(uint8_t value);
 
 	void read_config();
 
@@ -38,8 +38,8 @@ private:
 	int m_can_socket;
 	struct sockaddr_can m_can_addr;
 
-	uint8_t m_speed;
-	uint8_t m_rpm;
+	uint8_t m_level;
+	uint8_t m_pressure;
 };
 
 #endif // _MONITOR_CAN_HELPER_HPP
