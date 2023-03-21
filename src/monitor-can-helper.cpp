@@ -128,7 +128,7 @@ void MonitorCanHelper::set_level(uint8_t level)
 	can_update();
 }
 
-void MonitorCanHelper::set_pressure(uint8_t pressure)
+void MonitorCanHelper::set_pressure(double pressure)
 {
 	m_pressure = pressure;
 	can_update();
@@ -175,7 +175,7 @@ uint8_t MonitorCanHelper::convert_level(uint8_t value) {
 	return (uint8_t) result;
 }
 
-uint8_t  MonitorCanHelper::convert_pressure(uint8_t value) {
+uint8_t  MonitorCanHelper::convert_pressure(double value) {
 	int result = ((0xF0 - 0x10) / 15) * (((int)value/100) - 15) + 0x10;
 	if (result < 0x10)
 		result = 0x10;
