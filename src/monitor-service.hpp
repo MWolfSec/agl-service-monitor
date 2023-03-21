@@ -23,7 +23,7 @@ private:
 
 	void set_level(uint8_t level);
 
-	void set_pressure(uint8_t pressure);
+	void set_pressure(double pressure);
 
 };
 

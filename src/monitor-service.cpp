@@ -13,8 +13,8 @@ MonitorService::MonitorService(const VisConfig &config, net::io_context& ioc, ss
 
 void MonitorService::handle_authorized_response(void)
 {
-	subscribe("Vehicle.Speed");
-	subscribe("Vehicle.Powertrain.CombustionEngine.Speed");
+	subscribe("Vehicle.TurboCharger.BoostLevel");
+	subscribe("Vehicle.TurboCharger.BoostPressure");
 }
 
 void MonitorService::handle_get_response(std::string &path, std::string &value, std::string &timestamp)
