@@ -21,9 +21,9 @@ protected:
 private:
 	MonitorCanHelper m_can_helper;
 
-	void set_speed(uint8_t speed);
+	void set_level(uint8_t level);
 
-	void set_rpm(uint8_t rpm);
+	void set_pressure(uint8_t pressure);
 
 };
 

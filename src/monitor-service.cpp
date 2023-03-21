@@ -38,6 +38,7 @@ void MonitorService::handle_notification(std::string &path, std::string &value, 
 			double pressure = std::stoi(value);
 			if (pressure >= 0 && pressure < 5000.0)
 				set_pressure(pressure);
+				
 		}
 		catch (std::exception ex) {
 			// ignore bad value
@@ -51,7 +52,7 @@ void MonitorService::set_level(uint8_t level)
 	m_can_helper.set_level(level);
 }
 
-void MonitorService::set_pressure(uint8_t pressure)
+void MonitorService::set_pressure(double pressure)
 {
 	m_can_helper.set_pressure(pressure);
 }
