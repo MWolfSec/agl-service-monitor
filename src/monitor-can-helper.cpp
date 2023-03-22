@@ -71,7 +71,7 @@ void MonitorCanHelper::read_config()
 	}
 
 	m_verbose = 1;
-	std::string verbose = settings.get("verbose", "");
+	std::string verbose = settings.get("verbose", "1");
 	std::stringstream().swap(ss);
 	ss << verbose;
 	ss >> std::quoted(verbose);
