@@ -39,6 +39,7 @@ VisConfig::VisConfig(const std::string &hostname,
 VisConfig::VisConfig(const std::string &appname) :
 	m_valid(false)
 {
+	/*
 	std::string config("/etc/xdg/AGL/");
 	config += appname;
 	config += ".conf";
@@ -48,6 +49,12 @@ VisConfig::VisConfig(const std::string &appname) :
 		config += "/AGL/";
 		config += appname;
 		config += ".conf";
+	}*/
+	std::string config("/etc/xdg/AGL/agl-service-monitor.conf");
+	char *home = getenv("XDG_CONFIG_HOME");
+	if (home) {
+		config = home;
+		config += "/AGL/agl-service-monitor.conf";
 	}
 
 	std::cout << "Using configuration " << config << std::endl;
@@ -141,7 +148,7 @@ VisConfig::VisConfig(const std::string &appname) :
 		return;
 	}
 
-	m_verbose = 0;
+	m_verbose = 1;
 	std::string verbose = settings.get("verbose", "");
 	std::stringstream().swap(ss);
 	ss << verbose;

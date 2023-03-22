@@ -37,7 +37,7 @@ void MonitorCanHelper::read_config()
 	// Using a separate configuration file now, it may make sense
 	// to revisit this if a workable scheme to handle overriding
 	// values for the full demo setup can be come up with.
-	std::string config("/etc/xdg/AGL/agl-service-monitor-can.conf");
+	std::string config("/etc/xdg/AGL/agl-service-monitor.conf");
 	char *home = getenv("XDG_CONFIG_HOME");
 	if (home) {
 		config = home;
@@ -67,7 +67,7 @@ void MonitorCanHelper::read_config()
 		return;
 	}
 
-	m_verbose = 0;
+	m_verbose = 1;
 	std::string verbose = settings.get("verbose", "");
 	std::stringstream().swap(ss);
 	ss << verbose;
@@ -146,7 +146,7 @@ void MonitorCanHelper::can_update()
 	frame.data[1] = convert_level(m_level);
 	frame.data[2] = 0;
 	frame.data[3] = 0;
-	frame.data[4] = convert_pressure(m_pressure);
+	frame.data[4] = 0;//convert_pressure(m_pressure);
 	frame.data[5] = 0;
 	frame.data[6] = 0;
 	frame.data[7] = 0;
