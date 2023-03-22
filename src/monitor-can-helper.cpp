@@ -149,7 +149,7 @@ void MonitorCanHelper::can_update()
 	frame.data[1] = convert_level(m_level);
 	frame.data[2] = 0;
 	frame.data[3] = 0;
-	frame.data[4] = 0; //convert_pressure(m_pressure);
+	frame.data[4] = convert_level(m_level); //convert_pressure(m_pressure);
 	frame.data[5] = 0;
 	frame.data[6] = 0;
 	frame.data[7] = 0;
