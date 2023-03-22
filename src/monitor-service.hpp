@@ -23,8 +23,8 @@ private:
 
 	void set_level(uint8_t level);
 
-	void set_pressure(double pressure);
+	// void set_pressure(double pressure);
 
 };
 
-#endif // _AVL_SERVICE_HPP
+#endif // _MONITOR_SERVICE_HPP

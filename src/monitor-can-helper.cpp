@@ -16,7 +16,7 @@ namespace property_tree = boost::property_tree;
 
 MonitorCanHelper::MonitorCanHelper() :
 	m_level(30),
-	m_pressure(800.0),
+	// m_pressure(800.0),
 	m_port("can0"),
 	m_config_valid(false),
 	m_active(false),
@@ -37,12 +37,13 @@ void MonitorCanHelper::read_config()
 	// Using a separate configuration file now, it may make sense
 	// to revisit this if a workable scheme to handle overriding
 	// values for the full demo setup can be come up with.
-	std::string config("/etc/xdg/AGL/agl-service-monitor.conf");
-	/*char *home = getenv("XDG_CONFIG_HOME");
+	std::string config("/etc/xdg/AGL/agl-service-monitor-can.conf");
+	char *home = getenv("XDG_CONFIG_HOME");
 	if (home) {
 		config = home;
 		config += "/AGL/agl-service-monitor.conf";
-	}*/
+	}
+
 
 	std::cout << "Using configuration " << config << std::endl;
 	property_tree::ptree pt;
@@ -128,11 +129,13 @@ void MonitorCanHelper::set_level(uint8_t level)
 	can_update();
 }
 
+/*
 void MonitorCanHelper::set_pressure(double pressure)
 {
 	m_pressure = pressure;
 	can_update();
 }
+*/
 
 void MonitorCanHelper::can_update()
 {
@@ -146,7 +149,7 @@ void MonitorCanHelper::can_update()
 	frame.data[1] = convert_level(m_level);
 	frame.data[2] = 0;
 	frame.data[3] = 0;
-	frame.data[4] = 0;//convert_pressure(m_pressure);
+	frame.data[4] = 0; //convert_pressure(m_pressure);
 	frame.data[5] = 0;
 	frame.data[6] = 0;
 	frame.data[7] = 0;
@@ -167,14 +170,15 @@ void MonitorCanHelper::can_update()
 
 uint8_t MonitorCanHelper::convert_level(uint8_t value) {
 	int result = ((0xF0 - 0x10) / 15) * (value - 15) + 0x10;
-	if (result < 0x10)
-		result = 0x10;
-	if (result > 0xF0)
-		result = 0xF0;
+		if (result < 0x10)
+			result = 0x10;
+		if (result > 0xF0)
+			result = 0xF0;
 
-	return (uint8_t) result;
+		return (uint8_t) result;
 }
 
+/*
 uint8_t  MonitorCanHelper::convert_pressure(double value) {
 	int result = ((0xF0 - 0x10) / 15) * (((int)value/100) - 15) + 0x10;
 	if (result < 0x10)
@@ -184,5 +188,5 @@ uint8_t  MonitorCanHelper::convert_pressure(double value) {
 
 	return (uint8_t) result;
 }
-
+*/
 

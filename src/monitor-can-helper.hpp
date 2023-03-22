@@ -15,13 +15,13 @@ public:
 
 	void set_level(uint8_t level);
 
-	void set_pressure(double pressure);
+	// void set_pressure(double pressure);
 
 private:
 
 	uint8_t convert_level(uint8_t value);
 	
-	uint8_t  convert_pressure(double value);
+	// uint8_t  convert_pressure(double value);
 
 	void read_config();
 
@@ -39,7 +39,7 @@ private:
 	struct sockaddr_can m_can_addr;
 
 	uint8_t m_level;
-	double m_pressure;
+	// double m_pressure;
 };
 
 #endif // _MONITOR_CAN_HELPER_HPP

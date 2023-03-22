@@ -14,7 +14,7 @@ MonitorService::MonitorService(const VisConfig &config, net::io_context& ioc, ss
 void MonitorService::handle_authorized_response(void)
 {
 	subscribe("Vehicle.TurboCharger.BoostLevel");
-	subscribe("Vehicle.TurboCharger.BoostPressure");
+	// subscribe("Vehicle.TurboCharger.BoostPressure");
 }
 
 void MonitorService::handle_get_response(std::string &path, std::string &value, std::string &timestamp)
@@ -33,7 +33,9 @@ void MonitorService::handle_notification(std::string &path, std::string &value, 
 		catch (std::exception ex) {
 			// ignore bad value
 		}
-	} else if (path == "Vehicle.TurboCharger.BoostPressure") {
+	} 
+	/*
+	else if (path == "Vehicle.TurboCharger.BoostPressure") {
 		try {
 			double pressure = std::stoi(value);
 			if (pressure >= 0 && pressure < 5000.0)
@@ -43,7 +45,7 @@ void MonitorService::handle_notification(std::string &path, std::string &value, 
 		catch (std::exception ex) {
 			// ignore bad value
 		}
-	} 
+	} */
 	// else ignore
 }
 
@@ -52,8 +54,9 @@ void MonitorService::set_level(uint8_t level)
 	m_can_helper.set_level(level);
 }
 
+/*
 void MonitorService::set_pressure(double pressure)
 {
 	m_can_helper.set_pressure(pressure);
 }
-
+*/
