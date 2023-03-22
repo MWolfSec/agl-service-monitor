@@ -4,6 +4,7 @@ After=kuksa-val.service
 
 [Service]
 Type=simple
+ExecStartPre=/usr/bin/python3 /usr/sbin/kuksa-viss-init-demo.py
 ExecStart=/usr/sbin/agl-service-monitor
 Restart=on-failure
 

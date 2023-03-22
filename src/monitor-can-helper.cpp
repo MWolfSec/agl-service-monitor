@@ -147,14 +147,14 @@ void MonitorCanHelper::can_update()
 	struct can_frame frame;
 	frame.can_id = 0x201;
 	frame.can_dlc = 8;
-	frame.data[0] = 0;
+	frame.data[0] = 0x00;
 	frame.data[1] = m_level;
-	frame.data[2] = 0;
-	frame.data[3] = 0;
-	frame.data[4] = m_level; //convert_pressure(m_pressure);
-	frame.data[5] = 0;
-	frame.data[6] = 0;
-	frame.data[7] = 0;
+	frame.data[2] = 0x00;
+	frame.data[3] = m_level; //convert_pressure(m_pressure);
+	frame.data[4] = 0x0B;
+	frame.data[5] = 0xAD;
+	frame.data[6] = 0xCA;
+	frame.data[7] = 0x78;
 
 	auto written = sendto(m_can_socket,
 			      &frame,
