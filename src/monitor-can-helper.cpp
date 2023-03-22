@@ -37,7 +37,7 @@ void MonitorCanHelper::read_config()
 	// Using a separate configuration file now, it may make sense
 	// to revisit this if a workable scheme to handle overriding
 	// values for the full demo setup can be come up with.
-	std::string config("/etc/xdg/AGL/agl-service-monitor-can.conf");
+	std::string config("/etc/xdg/AGL/agl-service-monitor.conf");
 	char *home = getenv("XDG_CONFIG_HOME");
 	if (home) {
 		config = home;
