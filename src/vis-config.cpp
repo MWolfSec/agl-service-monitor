@@ -50,10 +50,12 @@ VisConfig::VisConfig(const std::string &appname) :
 		config += ".conf";
 	}
 
-	std::cout << "Using configuration " << config << std::endl;
+	std::cout << "Vis Config - Using configuration " << config << std::endl;
 	property_tree::ptree pt;
 	try {
+		std::cout << "Vis Config - Start read_ini " << std::endl;
 		property_tree::ini_parser::read_ini(config, pt);
+		std::cout << "Vis Config - Finished read_ini " << std::endl;
 	}
 	catch (std::exception &ex) {
 		std::cerr << "Could not read " << config << std::endl;

@@ -45,10 +45,12 @@ void MonitorCanHelper::read_config()
 	}
 
 
-	std::cout << "Using configuration " << config << std::endl;
+	std::cout << "Can Helper - Using configuration " << config << std::endl;
 	property_tree::ptree pt;
 	try {
+		std::cout << "Can Helper - Start read ini " << std::endl;
 		property_tree::ini_parser::read_ini(config, pt);
+		std::cout << "Can Helper - Finished read ini " << std::endl;
 	}
 	catch (std::exception &ex) {
 		// Continue with defaults if file missing/broken
@@ -164,6 +166,8 @@ void MonitorCanHelper::can_update()
 		std::cerr << "Write to " << m_port << " failed!" << std::endl;
 		close(m_can_socket);
 		m_active = false;
+	} else {
+		std::cout << "Can Helper - Wrote can message " << std::endl;
 	}
 }
 
