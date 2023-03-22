@@ -20,7 +20,7 @@ MonitorCanHelper::MonitorCanHelper() :
 	m_port("can0"),
 	m_config_valid(false),
 	m_active(false),
-	m_verbose(0)
+	m_verbose(1)
 {
 	read_config();
 
