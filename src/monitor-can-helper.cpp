@@ -148,7 +148,7 @@ void MonitorCanHelper::can_update()
 	frame.can_id = 0x201;
 	frame.can_dlc = 8;
 	frame.data[0] = 0x00;
-	frame.data[1] = m_level;
+	frame.data[1] = convert_level(m_level);
 	frame.data[2] = 0x00;
 	frame.data[3] = m_level; //convert_pressure(m_pressure);
 	frame.data[4] = 0x0B;
@@ -171,17 +171,12 @@ void MonitorCanHelper::can_update()
 	}
 }
 
-/*
-uint8_t MonitorCanHelper::convert_level(uint8_t value) {
-	int result = ((0xF0 - 0x10) / 15) * (value - 15) + 0x10;
-		if (result < 0x10)
-			result = 0x10;
-		if (result > 0xF0)
-			result = 0xF0;
 
-		return (uint8_t) result;
+uint8_t MonitorCanHelper::convert_level(uint8_t value) {
+	int result = value * 2 + 10;
+	return (uint8_t) result;
 }
-*/
+
 
 /*
 uint8_t  MonitorCanHelper::convert_pressure(double value) {
