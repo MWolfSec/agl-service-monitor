@@ -173,7 +173,14 @@ void MonitorCanHelper::can_update()
 
 
 uint8_t MonitorCanHelper::convert_level(uint8_t value) {
-	int result = value * 2 + 10;
+	
+	int result = 0;
+
+	if(value < 80){
+		result = value + 70;
+	} else if(value >= 80 && value <= 100){
+		result = value * 2 + 10;
+	} 
 	return (uint8_t) result;
 }
 
