@@ -177,7 +177,7 @@ uint8_t MonitorCanHelper::convert_level(uint8_t value) {
 	int result = 0;
 
 	if(value < 80){
-		result = value + 70;
+		result = value + 50;
 	} else if(value > 79 && value < 101){
 		result = value * 2 + 10;
 	} 
